@@ -2,7 +2,7 @@ import argparse
 
 # Default values for named arguments and flags
 default_values = {
-    'ip': None, # Automatically hosts it on the public ip if not given
+    'ip': "", # Automatically hosts it on the public ip if not given
     'port': 1000,
     'no_auto_convert': False,
     "no_debug": False

@@ -13,9 +13,11 @@ server.String = [] # String + UUID who made it
 def ValidateAnswer(string):
     if string.count(" ") + string.count("_") > 0:
         return False
-    for char in list("1234567890!\"\'£$%^&*()-=_+\{\}\\/@#~[]<>`¬|"):
-        string.replace(char, "")
-    return string
+    str = ""
+    for char in string:
+        if char in list("QWERTYUIOPASDFGHJKLZXCVBNM" + "QWERTYUIOPASDFGHJKLZXCVBNM".lower() + "1234567890" + ".,-;\'\""):
+            str += char
+    return str[:50]
 
 def GetKeyFromValue(dict, val):
     return list(dict.keys())[list(dict.values()).index(val)]

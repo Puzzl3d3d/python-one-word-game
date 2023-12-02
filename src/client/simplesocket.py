@@ -61,7 +61,7 @@ class SimpleSocket:
     def _startRecieving(self):
         while True:
             try:
-                data = self.client_socket.recv(1024 * 20).decode()
+                data = self.client_socket.recv(1024 * 1024).decode()
 
                 if data:
 

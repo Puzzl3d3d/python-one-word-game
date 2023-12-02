@@ -51,7 +51,7 @@ class SimpleSocket:
             try:
                 if not self.clients.get(client_socket):
                     break
-                data = client_socket.recv(1024 * 20).decode()
+                data = client_socket.recv(1024 * 1024).decode()
 
                 if data:
 

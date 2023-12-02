@@ -2,7 +2,7 @@ import argparse
 
 # Default values for named arguments and flags
 default_values = {
-    'ip': None, # Automatically hosts it on the public ip if not given
+    'ip': "", # Automatically hosts it on the public ip if not given
     'port': 1000,
     'no_auto_convert': False,
     "no_debug": False
@@ -85,7 +85,7 @@ class SimpleSocket:
             try:
                 if not self.clients.get(client_socket):
                     break
-                data = client_socket.recv(1024 * 20).decode()
+                data = client_socket.recv(1024 * 1024).decode()
 
                 if data:
 
@@ -209,9 +209,11 @@ server.String = [] # String + UUID who made it
 def ValidateAnswer(string):
     if string.count(" ") + string.count("_") > 0:
         return False
-    for char in list("1234567890!\"\'£$%^&*()-=_+\{\}\\/@#~[]<>`¬|"):
-        string.replace(char, "")
-    return string
+    str = ""
+    for char in string:
+        if char in list("QWERTYUIOPASDFGHJKLZXCVBNM" + "QWERTYUIOPASDFGHJKLZXCVBNM".lower() + "1234567890" + ".,-;\'\""):
+            str += char
+    return str[:50]
 
 def GetKeyFromValue(dict, val):
     return list(dict.keys())[list(dict.values()).index(val)]

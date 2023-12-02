@@ -2,7 +2,7 @@ import argparse
 
 # Default values for named arguments and flags
 default_values = {
-    'ip': None, # Automatically tries the public ip if not given
+    'ip': "", # Automatically tries the public ip if not given
     'port': 1000,
     'no_auto_convert': False,
     "no_debug": False
@@ -95,7 +95,7 @@ class SimpleSocket:
     def _startRecieving(self):
         while True:
             try:
-                data = self.client_socket.recv(1024 * 20).decode()
+                data = self.client_socket.recv(1024 * 1024).decode()
 
                 if data:
 
